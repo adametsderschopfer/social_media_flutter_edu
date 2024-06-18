@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark(),
       home: SignUpScreen(),
       routes: {
-        "sign-in": (BuildContext context) => SignInScreen(),
+        SignInScreen.id: (BuildContext context) => SignInScreen(),
+        SignUpScreen.id: (BuildContext context) => SignUpScreen(),
       },
     );
   }

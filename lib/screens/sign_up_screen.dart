@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_flutter_edu/screens/sign_in_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
+  static const String id = "sign_up_screen";
+
   const SignUpScreen({super.key});
 
   @override
@@ -131,7 +134,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextButton(
                 child: const Text("Sign In instead"),
                 onPressed: () {
-                  // todo: go to navigation screen
+                  Navigator.of(context).pushReplacementNamed(SignInScreen.id);
                 },
               )
             ],
