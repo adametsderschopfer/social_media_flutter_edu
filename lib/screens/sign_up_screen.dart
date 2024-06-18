@@ -14,6 +14,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _username = "";
   String _password = "";
 
+  final FocusNode _usernameFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +31,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           // email
           TextFormField(
             keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
             decoration: const InputDecoration(
                 labelText: "Enter your email",
                 enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.black))),
-            onFieldSubmitted: (_) {},
+            onFieldSubmitted: (_) {
+              FocusScope.of(context).requestFocus(_usernameFocusNode);
+            },
             onSaved: (value) {
               _email = value!.trim();
             },
@@ -41,7 +47,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 return "Please enter your email";
               }
 
-              // todo: add validator for email
+              // todo: add validator for email -> emailValidationPattern
 
               return null;
             },
@@ -49,11 +55,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
           // username
           TextFormField(
+            focusNode: _usernameFocusNode,
+            textInputAction: TextInputAction.next,
             decoration: const InputDecoration(
                 labelText: "Enter your username",
                 enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.black))),
-            onFieldSubmitted: (_) {},
+            onFieldSubmitted: (_) {
+              FocusScope.of(context).requestFocus(_passwordFocusNode);
+            },
             onSaved: (value) {
               _username = value!.trim();
             },
@@ -70,12 +80,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
           // password
           TextFormField(
+            focusNode: _passwordFocusNode,
             obscureText: true,
             decoration: const InputDecoration(
                 labelText: "Enter your password",
                 enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.black))),
-            onFieldSubmitted: (_) {},
+            onFieldSubmitted: (_) {
+              // TODO: - submit form
+            },
             onSaved: (value) {
               _password = value!.trim();
             },
@@ -96,7 +109,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
           TextButton(
             child: const Text("Sign Up"),
-            onPressed: () {},
+            onPressed: () {
+              // TODO: - submit form
+            },
           )
         ],
       ),
