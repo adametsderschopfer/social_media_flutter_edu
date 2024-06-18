@@ -127,6 +127,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onPressed: () {
                   // TODO: - submit form
                 },
+              ),
+              TextButton(
+                child: const Text("Sign In instead"),
+                onPressed: () {
+                  // todo: go to navigation screen
+                },
               )
             ],
           ),
