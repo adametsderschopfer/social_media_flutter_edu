@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "434096457240",
+    "project_id": "social-media-flutter-edu",
+    "storage_bucket": "social-media-flutter-edu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434096457240:android:4b8726ec2a71061172656d",
+        "android_client_info": {
+          "package_name": "com.social_media.social_media_flutter_edu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5Axpk4pr2KhpeYlquakujApVcB1gkaIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

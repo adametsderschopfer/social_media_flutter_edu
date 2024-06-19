@@ -17,8 +17,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _username = "";
   String _password = "";
 
-  final FocusNode _usernameFocusNode = FocusNode();
-  final FocusNode _passwordFocusNode = FocusNode();
+  late final FocusNode _usernameFocusNode;
+  late final FocusNode _passwordFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _usernameFocusNode = FocusNode();
+    _passwordFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    _usernameFocusNode.dispose();
+    _passwordFocusNode.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

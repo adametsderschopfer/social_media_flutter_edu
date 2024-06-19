@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_flutter_edu/screens/sign_in_screen.dart';
 import 'package:social_media_flutter_edu/screens/sign_up_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark(),
       home: SignUpScreen(),
       routes: {
-        SignInScreen.id: (BuildContext context) => SignInScreen(),
+        SignInScreen.id: (BuildContext context) => const SignInScreen(),
         SignUpScreen.id: (BuildContext context) => SignUpScreen(),
       },
     );
