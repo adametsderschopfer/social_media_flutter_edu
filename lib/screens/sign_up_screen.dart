@@ -36,6 +36,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _passwordFocusNode.dispose();
   }
 
+  void _submit() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black))),
                 onFieldSubmitted: (_) {
-                  // TODO: - submit form
+                  _submit();
                 },
                 onSaved: (value) {
                   _password = value!.trim();
@@ -144,7 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextButton(
                 child: const Text("Sign Up"),
                 onPressed: () {
-                  // TODO: - submit form
+                  _submit();
                 },
               ),
               TextButton(
