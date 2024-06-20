@@ -28,6 +28,10 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
   Future<void> signUp({
     required String email,
     required String username,
