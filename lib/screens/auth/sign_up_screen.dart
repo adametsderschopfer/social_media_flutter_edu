@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_media_flutter_edu/screens/posts_screen.dart';
-import 'package:social_media_flutter_edu/screens/sign_in_screen.dart';
+import 'package:social_media_flutter_edu/screens/auth/sign_in_screen.dart';
+import 'package:social_media_flutter_edu/screens/post/posts_screen.dart';
 
-import '../bloc/auth/auth_cubit.dart';
+import '../../bloc/auth/auth_cubit.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const String id = "sign_up_screen";

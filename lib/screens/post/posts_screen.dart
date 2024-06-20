@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_media_flutter_edu/bloc/auth/auth_cubit.dart';
-import 'package:social_media_flutter_edu/screens/sign_up_screen.dart';
+import 'package:social_media_flutter_edu/screens/auth/sign_up_screen.dart';
 
 class PostsScreen extends StatefulWidget {
   static const id = "postsScreen";
