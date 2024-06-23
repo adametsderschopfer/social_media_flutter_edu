@@ -1,0 +1,1 @@
+const fcAssetsStoragePath = 'assets/images';

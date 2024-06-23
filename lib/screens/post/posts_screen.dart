@@ -25,6 +25,7 @@ class _PostsScreenState extends State<PostsScreen> {
           IconButton(
               onPressed: () {
                 final imagePicker = ImagePicker();
+
                 imagePicker
                     .pickImage(source: ImageSource.gallery, imageQuality: 50)
                     .then((xFile) {
@@ -58,9 +59,11 @@ class _PostsScreenState extends State<PostsScreen> {
               icon: const Icon(Icons.logout))
         ],
       ),
-      body: ListView.builder(itemBuilder: (_, index) {
-        return const Text("Body Here");
-      }),
+      body: ListView.builder(
+          itemCount: 2,
+          itemBuilder: (_, index) {
+            return const Text("Body Here");
+          }),
     );
   }
 }
