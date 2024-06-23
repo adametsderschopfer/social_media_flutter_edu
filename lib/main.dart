@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_media_flutter_edu/bloc/auth/auth_cubit.dart';
 import 'package:social_media_flutter_edu/screens/auth/sign_in_screen.dart';
 import 'package:social_media_flutter_edu/screens/auth/sign_up_screen.dart';
+import 'package:social_media_flutter_edu/screens/post/create_post_screen.dart';
 import 'package:social_media_flutter_edu/screens/post/posts_screen.dart';
 
 Future<void> main() async {
@@ -28,6 +29,8 @@ class MyApp extends StatelessWidget {
           SignInScreen.id: (BuildContext context) => const SignInScreen(),
           SignUpScreen.id: (BuildContext context) => const SignUpScreen(),
           PostsScreen.id: (BuildContext context) => const PostsScreen(),
+          CreatePostScreen.id: (BuildContext context) =>
+              const CreatePostScreen(),
         },
       ),
     );
