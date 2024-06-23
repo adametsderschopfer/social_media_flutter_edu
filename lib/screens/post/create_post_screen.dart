@@ -45,6 +45,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         "userId": FirebaseAuth.instance.currentUser!.uid,
         "description": _description,
         "imageUrl": imageUrl,
+        "userName": FirebaseAuth.instance.currentUser!.displayName,
       });
 
       docRef.update({"postId": docRef.id});

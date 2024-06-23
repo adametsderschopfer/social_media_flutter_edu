@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,6 +22,7 @@ class _PostsScreenState extends State<PostsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black26,
         actions: [
           IconButton(
               onPressed: () {
@@ -59,11 +61,49 @@ class _PostsScreenState extends State<PostsScreen> {
               icon: const Icon(Icons.logout))
         ],
       ),
-      body: ListView.builder(
-          itemCount: 2,
-          itemBuilder: (_, index) {
-            return const Text("Body Here");
-          }),
+      body: StreamBuilder<QuerySnapshot>(
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasError) {
+            return const Center(
+              child: Text("Something went wrong on data loading..."),
+            );
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          }
+
+          dynamic docsList = snapshot.data!.docs;
+
+          return ListView.builder(
+              itemCount: docsList.length,
+              itemBuilder: (_, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        height: MediaQuery.of(context).size.width / 2,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(docsList[index]['imageUrl'])),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(docsList[index]['userName'],
+                          style: Theme.of(context).textTheme.headlineMedium),
+                      const SizedBox(height: 5),
+                      Text(docsList[index]['description'],
+                          style: Theme.of(context).textTheme.headlineSmall),
+                    ],
+                  ),
+                );
+              });
+        },
+        stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+      ),
     );
   }
 }
