@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:social_media_flutter_edu/bloc/auth/auth_cubit.dart';
+import 'package:social_media_flutter_edu/models/post_model.dart';
 import 'package:social_media_flutter_edu/screens/auth/sign_in_screen.dart';
+import 'package:social_media_flutter_edu/screens/post/comments/comments_screen.dart';
 import 'package:social_media_flutter_edu/screens/post/create_post_screen.dart';
 
 class PostsScreen extends StatefulWidget {
@@ -79,26 +81,41 @@ class _PostsScreenState extends State<PostsScreen> {
           return ListView.builder(
               itemCount: docsList.length ?? 0,
               itemBuilder: (_, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        height: MediaQuery.of(context).size.width / 2,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(docsList[index]['imageUrl'])),
+                final QueryDocumentSnapshot rawPost = docsList[index];
+                final PostModel post = PostModel(
+                    imageUrl: rawPost['imageUrl'],
+                    id: rawPost['postId'],
+                    userId: rawPost['userId'],
+                    userName: rawPost['userName'],
+                    description: rawPost['description'],
+                    timestamp: rawPost['timestamp']);
+
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context)
+                        .pushNamed(CommentsScreen.id, arguments: post);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: MediaQuery.of(context).size.width / 2,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(post.imageUrl)),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                      Text(docsList[index]['userName'],
-                          style: Theme.of(context).textTheme.headlineMedium),
-                      const SizedBox(height: 5),
-                      Text(docsList[index]['description'],
-                          style: const TextStyle(fontSize: 16)),
-                    ],
+                        const SizedBox(height: 20),
+                        Text(post.userName,
+                            style: Theme.of(context).textTheme.headlineMedium),
+                        const SizedBox(height: 5),
+                        Text(post.description,
+                            style: const TextStyle(fontSize: 16)),
+                      ],
+                    ),
                   ),
                 );
               });
