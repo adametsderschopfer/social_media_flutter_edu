@@ -69,14 +69,15 @@ class _PostsScreenState extends State<PostsScreen> {
             );
           }
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
+          if (snapshot.connectionState == ConnectionState.waiting ||
+              snapshot.connectionState == ConnectionState.none) {
             return const CircularProgressIndicator();
           }
 
           dynamic docsList = snapshot.data!.docs;
 
           return ListView.builder(
-              itemCount: docsList.length,
+              itemCount: docsList.length ?? 0,
               itemBuilder: (_, index) {
                 return Padding(
                   padding: const EdgeInsets.all(18.0),
@@ -96,7 +97,7 @@ class _PostsScreenState extends State<PostsScreen> {
                           style: Theme.of(context).textTheme.headlineMedium),
                       const SizedBox(height: 5),
                       Text(docsList[index]['description'],
-                          style: Theme.of(context).textTheme.headlineSmall),
+                          style: const TextStyle(fontSize: 16)),
                     ],
                   ),
                 );
