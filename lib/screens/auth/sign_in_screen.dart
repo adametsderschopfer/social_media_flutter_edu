@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_media_flutter_edu/bloc/auth/auth_cubit.dart';
 import 'package:social_media_flutter_edu/screens/auth/sign_up_screen.dart';
-import 'package:social_media_flutter_edu/screens/post/posts_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   static const String id = "sign_in_screen";
@@ -52,10 +51,6 @@ class _SignInScreenState extends State<SignInScreen> {
     return Scaffold(
         body: BlocConsumer<AuthCubit, AuthState>(
       listener: (prevState, currentState) {
-        if (currentState is AuthSignedIn) {
-          Navigator.of(context).pushReplacementNamed(PostsScreen.id);
-        }
-
         if (currentState is AuthFailure) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               duration: const Duration(seconds: 2),

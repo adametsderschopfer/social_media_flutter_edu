@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:social_media_flutter_edu/bloc/auth/auth_cubit.dart';
 import 'package:social_media_flutter_edu/models/post_model.dart';
-import 'package:social_media_flutter_edu/screens/auth/sign_in_screen.dart';
 import 'package:social_media_flutter_edu/screens/post/comments/comments_screen.dart';
 import 'package:social_media_flutter_edu/screens/post/create_post_screen.dart';
 
@@ -58,7 +57,6 @@ class _PostsScreenState extends State<PostsScreen> {
           IconButton(
               onPressed: () async {
                 await context.read<AuthCubit>().signOut();
-                Navigator.of(context).pushReplacementNamed(SignInScreen.id);
               },
               icon: const Icon(Icons.logout))
         ],

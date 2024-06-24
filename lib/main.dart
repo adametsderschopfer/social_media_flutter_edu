@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +18,18 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  Widget _buildHomeScreen() {
+    return StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (BuildContext context, snapshot) {
+          if (snapshot.hasData) {
+            return const PostsScreen();
+          }
+
+          return const SignInScreen();
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AuthCubit>(
@@ -25,7 +38,7 @@ class MyApp extends StatelessWidget {
       },
       child: MaterialApp(
         theme: ThemeData.dark(),
-        home: const SignUpScreen(),
+        home: _buildHomeScreen(),
         routes: {
           SignInScreen.id: (BuildContext context) => const SignInScreen(),
           SignUpScreen.id: (BuildContext context) => const SignUpScreen(),
